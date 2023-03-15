@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Primary Meta Tags -->
+    <title>Nostr broadcast</title>
+    <meta name="title" content="Nostr broadcast" />
+    <meta name="description" content="Fetch and broadcast your Nostr events" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nostr-broadcast.pages.dev/" />
+    <meta property="og:title" content="Nostr broadcast" />
+    <meta
+      property="og:description"
+      content="Fetch, backup and broadcast your Nostr events" />
+    <meta property="og:image" content="/img/nostr-broadcast_og.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://nostr-broadcast.pages.dev/" />
+    <meta property="twitter:title" content="Nostr broadcast" />
+    <meta
+      property="twitter:description"
+      content="Fetch, backup and broadcast your Nostr events" />
+    <meta property="twitter:image" content="/img/nostr-broadcast_twitter.png" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/broadcast.png" type="image/x-icon" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Lightning -->
+    <meta name="lightning" content="bordalix@getalby.com" />
+    <!-- PWA -->
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="apple-touch-icon" href="img/broadcast.png" />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="space-between">
+        <h1>Nostr Posts</h1>
+      </div>
+      <div style="text-align:center">Find your Nostr events with a public key</div>
+  <br>
+  
+      <details style="display:none;">
+        <!-- <summary>Know more</summary>
+        <p>
+          This app will fetch your events from a big list of relays and
+          broadcast all events to the same relays.
+        </p>
+        <p>
+          If you want to use your own
+          <a
+            href="https://github.com/bordalix/nostr-broadcast/blob/master/js/relays.js"
+            >list of relays</a
+          >:
+        </p>
+        <ul>
+          <li>
+            Save site or clone
+            <a href="https://github.com/bordalix/nostr-broadcast">repo</a>
+          </li>
+          <li>Edit <u>js/relays.js</u></li>
+          <li>Open <u>index.html</u> with a browser</li>
+        </ul>
+        <p>
+          Repo at
+          <a href="https://github.com/bordalix/nostr-broadcast">github</a>
+        </p>
+        <p>
+          Twitter
+          <a href="https://twitter.com/bordalix/status/1623293175128379393"
+            >thread</a
+          >
+          for discussion
+        </p>
+        <p>
+          Nostr
+          <a
+            href="https://snort.social/e/note1xexzdxczz0gmxl6zm5zph54hn6m6uwkcln3vxjvwpyqw3xxfgf6sp8v69w"
+            >thread</a
+          >
+          for discussion
+        </p> -->
+      </details>
+      <div class="box gray">
+        <p style="margin-bottom: 0">
+          
+          <p>Enter a npub below or copy mine: <span style="color:red; background-color: #ccc;">npub1ca0pjqt99dqqsgsqk4gj6r0ly3fzwpcyc43ppu049yl5dxhw8wmqelewwv</span></p>
+          <button onclick="toTheClipboard()" id="second-button">COPY</button>
+
+          <div id="clipboard-confirmation"></div>
+
+        </p>
+        <form>
+          <div class="space-between">
+            <p>
+              <input
+                type="text"
+                id="pubkey"
+                name="pubkey"
+                onchange="pubkeyOnChange()"
+                placeholder="Public key (npub or hex)"
+                style="width: 180px"
+                required />
+            </p>
+            <p>
+              <button
+                id="fetch-and-broadcast"
+                onclick="fetchAndBroadcast(); return false;">
+                Fetch
+              </button>
+              <button
+                id="get-from-extension"
+                onclick="getFromExtension(); return false;"
+                style="display: none">
+                Get from extension
+              </button>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="box">
+        <div class="space-between">
+          <p id="fetching-status"></p>
+          <p style="padding-top: 2px">
+            <progress
+              type="range"
+              id="fetching-progress"
+              name="fetching-progress"
+              min="0"
+              max="20"
+              value="0"
+              style="visibility: hidden" />
+          </p>
+        </div>
+        <p id="events-found" style="text-align: center"></p>
+        <div class="space-between">
+          <p id="broadcasting-status"></p>
+          <p style="padding-top: 2px">
+            <progress
+              type="range"
+              id="broadcasting-progress"
+              name="broadcasting-progress"
+              min="0"
+              max="20"
+              value="0"
+              style="visibility: hidden" />
+          </p>
+        </div>
+      </div>
+      <div class="box" id="output">
+        output will go here<br><br>
+        👽
+      </div>
+      <footer>
+        <p>This is a modified version of <a href="https://nostr-broadcast.pages.dev/">https://nostr-broadcast.pages.dev/</a>
+        </p>
+        
+        <p>Find more nostr utils on <a href="https://nostr-utils.pages.dev">https://nostr-utils.pages.dev</a>
+        </p>
+        
+      </footer>
+    </main>
+
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://bundle.run/bech32@2.0.0"></script>
+    <script src="js/jquery-3.6.2.min.js"></script>
+    <script src="js/nostr-utils.js"></script>
+    <script src="js/relays.js"></script>
+    <script src="js/nostr-broadcast.js"></script>
+    <script src="js/custom-code.js"></script>
+  </body>
+</html>
